@@ -399,7 +399,7 @@ MonoBehaviour:
   _zoom: 18
   _initializeOnStart: 0
   _latitudeLongitudeString: 0,0
-  _root: {fileID: 0}
+  _root: {fileID: 1988830868}
   _tileProvider: {fileID: 1988830864}
   _mapVisualizer: {fileID: 11400000, guid: 5c78f162127f44067883454c4f8e174e, type: 2}
   _unityTileSize: 100
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 592729763}
   - component: {fileID: 592729764}
   - component: {fileID: 592729765}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,7 +1187,7 @@ GameObject:
   - component: {fileID: 908724745}
   - component: {fileID: 908724744}
   - component: {fileID: 908724743}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: GPS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1325,7 +1325,7 @@ GameObject:
   - component: {fileID: 928868205}
   - component: {fileID: 928868204}
   - component: {fileID: 928868203}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1661,6 +1661,7 @@ GameObject:
   - component: {fileID: 1085054899}
   - component: {fileID: 1085054898}
   - component: {fileID: 1085054897}
+  - component: {fileID: 1085054901}
   m_Layer: 0
   m_Name: AR Root
   m_TagString: Untagged
@@ -1690,7 +1691,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1085054895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9acf0b0c890fb9040b2f5da53bf54d86, type: 3}
   m_Name: 
@@ -1744,6 +1745,24 @@ MonoBehaviour:
     type: 2}
   m_MaxPointsToShow: 100
   m_ParticleSize: 0.04
+--- !u!114 &1085054901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1085054895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a6c9235e73bea042bda6b2c0539ad63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ARCamera: {fileID: 1476957994}
+  m_PlaneDetection: 1
+  m_LightEstimation: 0
+  m_PointCloud: 1
+  m_Scale: 1
+  pointOfInterest: {x: 0, y: 0, z: 0}
+  m_SendVideo: 0
 --- !u!1 &1228666638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2064,10 +2083,10 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294964735
+    m_Bits: 4294965247
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -3009,7 +3028,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2137922447}
-  m_Layer: 11
+  m_Layer: 9
   m_Name: DebugPaths
   m_TagString: Untagged
   m_Icon: {fileID: 0}
