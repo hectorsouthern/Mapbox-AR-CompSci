@@ -1662,6 +1662,7 @@ GameObject:
   - component: {fileID: 1085054898}
   - component: {fileID: 1085054897}
   - component: {fileID: 1085054901}
+  - component: {fileID: 1085054902}
   m_Layer: 0
   m_Name: AR Root
   m_TagString: Untagged
@@ -1691,7 +1692,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1085054895}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9acf0b0c890fb9040b2f5da53bf54d86, type: 3}
   m_Name: 
@@ -1751,7 +1752,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1085054895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a6c9235e73bea042bda6b2c0539ad63, type: 3}
   m_Name: 
@@ -1763,6 +1764,19 @@ MonoBehaviour:
   m_Scale: 1
   pointOfInterest: {x: 0, y: 0, z: 0}
   m_SendVideo: 0
+--- !u!114 &1085054902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1085054895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35417c78dba33184599f881938e0fe3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _MainCamera: {fileID: 0}
+  _heightAboveGround: 1
 --- !u!1 &1228666638
 GameObject:
   m_ObjectHideFlags: 0
@@ -2896,6 +2910,7 @@ GameObject:
   - component: {fileID: 1988830867}
   - component: {fileID: 1988830866}
   - component: {fileID: 1988830865}
+  - component: {fileID: 1988830869}
   m_Layer: 9
   m_Name: ArAlignedMap
   m_TagString: Untagged
@@ -2921,8 +2936,7 @@ MonoBehaviour:
 --- !u!114 &1988830865
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114783434110793938, guid: 35e76f6e52f5c4252a0b703cc2019a37,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1988830863}
   m_Enabled: 1
@@ -2946,7 +2960,7 @@ MonoBehaviour:
   _transform: {fileID: 1988830868}
   _maxSamples: 10
   _ignoreAngleThreshold: 10
-  _lerpSpeed: 0.5
+  _lerpSpeed: 0
 --- !u!114 &1988830867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2983,6 +2997,17 @@ Transform:
   m_Father: {fileID: 1052011655}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1988830869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988830863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 419f938dc6c1c5144897d3784fbb7d08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2000755907
 GameObject:
   m_ObjectHideFlags: 0
