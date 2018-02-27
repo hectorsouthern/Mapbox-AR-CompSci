@@ -1692,7 +1692,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1085054895}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9acf0b0c890fb9040b2f5da53bf54d86, type: 3}
   m_Name: 
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1085054895}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a6c9235e73bea042bda6b2c0539ad63, type: 3}
   m_Name: 
@@ -2631,7 +2631,7 @@ MonoBehaviour:
   _autoFireEvent: 1
   _updateInterval: 0
   _sendEvent: 0
-  _latitudeLongitude: 54.971423, -1.916220
+  _latitudeLongitude: 54.9821827708885, -1.65243099835217
   _targetTransform: {fileID: 0}
   _map: {fileID: 388502441}
 --- !u!1 &1814349636
