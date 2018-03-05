@@ -5,38 +5,19 @@ using UnityEngine;
 using Mapbox.Unity.Map;
 
 public class ChangeHeight : MonoBehaviour {
-	public Transform _thingToMove;
-	public float _heightAboveGround = 1;
-
-	private void Start()
-	{
-		//Default to moving the object itself.
-		if( _thingToMove == null )
-		{
-			_thingToMove = transform;
-		}
-	}
 
 	void Update () {
-
-		//TODO: Probably don't need to do this *every* frame.
-
-		RaycastHit hit;
-		//Simulate a ray from 1000m above the user to find out how far above/below the ground they are.
-		int layerMask = (1 << LayerMask.NameToLayer("Map")); //Only intersect with the "map" layer.
-		if (Physics.Raycast(this.transform.position + new Vector3(0, 1000, 0), Vector3.down, out hit, Mathf.Infinity, layerMask))
+		Transform arPlane = transform.Find("debugPlanePrefab(Clone)/Plane"); //Get the AR Plane child object
+		Vector3 rayPosition = new Vector3(arPlane.position.x, 1000, arPlane.position.z); //Create a new Rayfire at the same X & Z as the plane, but with Y + 1000
+		RaycastHit hit; //Create hit data variable
+		int layerMask = (1 << LayerMask.NameToLayer("Map")); //Only intersect with objects in the Map layer
+		Debug.DrawLine(rayPosition, Vector3.down, Color.red, Mathf.Infinity); //Debug line to graphically display rays
+		if (Physics.Raycast(rayPosition, Vector3.down, out hit, Mathf.Infinity, layerMask)) //Fire ray from position above, downwards an infinite length.
 		{
-			float distanceAboveGround = hit.distance - 1000;
-			if (distanceAboveGround < _heightAboveGround*0.9 || distanceAboveGround > _heightAboveGround*1.1 || Math.Abs(distanceAboveGround - _heightAboveGround) > 1)
-			{
-				//Debug.Log(name+" is " + distanceAboveGround + "m above the ground. Moving "+ _thingToMove.name + "...");
-				_thingToMove.transform.localPosition = new Vector3(_thingToMove.transform.localPosition.x, _thingToMove.transform.localPosition.y - distanceAboveGround + _heightAboveGround, _thingToMove.transform.localPosition.z);
-			}
+			Vector3 arRootPos = this.transform.position; //Copy the current AR Root position to temp variable.
+			//CALCULATE ARPLANE OFFSET (ARROOT Y - ARPLANE Y?)
+			this.transform.position = new Vector3(arRootPos.x, hit.point.y - arPlane.position.y, arRootPos.z); //Change copied AR Root position accordingly, factoring in the height of the plane in relation to the AR Root object.
+			Debug.Log(new Vector3(arRootPos.x, hit.point.y - arPlane.position.y, arRootPos.z)); //Change copied AR Root position accordingly, factoring in the height of the plane in relation to the AR Root object.)
 		}
-	}
-
-	public void setHeightAboveGround( float height)
-	{
-		_heightAboveGround = height;
 	}
 }

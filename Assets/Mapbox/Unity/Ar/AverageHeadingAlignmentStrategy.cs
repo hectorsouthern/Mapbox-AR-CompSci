@@ -73,23 +73,9 @@ namespace Mapbox.Unity.Ar
 		// FIXME: this should be in a coroutine, which is activated in Align.
 		void Update()
 		{
-			while(GameObject.Find("Plane") != null){
 			var t = _lerpSpeed * Time.deltaTime;
-			Vector3 planePosition = GameObject.Find("Plane").transform.position;
-			RaycastHit hit;
-			float planeHeight = 0;
-			int layerMask = (1 << LayerMask.NameToLayer("Map")); //Only intersect with the "map" layer.
-			Debug.DrawLine(planePosition, Vector3.up, Color.red, Mathf.Infinity);
-			if (Physics.Raycast(planePosition, Vector3.up, out hit, Mathf.Infinity, layerMask))
-			{
-				planeHeight = hit.distance;
-				Debug.Log(hit.distance);
-			}
-			_targetPosition = new Vector3(_targetPosition.x, 100, _targetPosition.z);
 			_transform.SetPositionAndRotation(
-				Vector3.Lerp(_transform.localPosition, _targetPosition, t),
-				Quaternion.Lerp(_transform.localRotation, _targetRotation, t));
-		}
+			Vector3.Lerp(_transform.localPosition, _targetPosition, t),Quaternion.Lerp(_transform.localRotation, _targetRotation, t));
 		}
 	}
 }
