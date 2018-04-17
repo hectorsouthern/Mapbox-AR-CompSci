@@ -46,6 +46,7 @@ namespace Mapbox.Unity
 		public static bool Configured;
 		public static string ConfigurationJSON;
 		private MapboxConfiguration _configuration;
+		private string _tokenNotSetErrorMessage = "No configuration file found! Configure your access token from the Mapbox > Setup menu.";
 
 		/// <summary>
 		/// The Mapbox API access token.
@@ -61,6 +62,10 @@ namespace Mapbox.Unity
 		MapboxAccess()
 		{
 			LoadAccessToken();
+			if (null == _configuration || string.IsNullOrEmpty(_configuration.AccessToken))
+			{
+				Debug.LogError(_tokenNotSetErrorMessage);
+			}
 		}
 
 		public void SetConfiguration(MapboxConfiguration configuration, bool throwExecptions = true)
@@ -69,31 +74,39 @@ namespace Mapbox.Unity
 			{
 				if (throwExecptions)
 				{
-					throw new InvalidTokenException("No configuration file found! Configure your access token from the Mapbox > Settings menu.");
+					throw new InvalidTokenException(_tokenNotSetErrorMessage);
 				}
 
 			}
 
-			TokenValidator.Retrieve(configuration.AccessToken, (response) =>
+			if (null == configuration || string.IsNullOrEmpty(configuration.AccessToken))
 			{
-				if (OnTokenValidation != null)
+				Debug.LogError(_tokenNotSetErrorMessage);
+			}
+			else
+			{
+				TokenValidator.Retrieve(configuration.AccessToken, (response) =>
 				{
-					OnTokenValidation(response.Status);
-				}
+					if (OnTokenValidation != null)
+					{
+						OnTokenValidation(response.Status);
+					}
 
-				if (response.Status != MapboxTokenStatus.TokenValid
-				   && throwExecptions)
-				{
-					throw new InvalidTokenException(response.Status.ToString());
-				}
-			});
+					if (response.Status != MapboxTokenStatus.TokenValid
+					   && throwExecptions)
+					{
+						configuration.AccessToken = string.Empty;
+						Debug.LogError(new InvalidTokenException(response.Status.ToString().ToString()));
+					}
+				});
 
-			_configuration = configuration;
+				_configuration = configuration;
 
-			ConfigureFileSource();
-			ConfigureTelemetry();
+				ConfigureFileSource();
+				ConfigureTelemetry();
 
-			Configured = true;
+				Configured = true;
+			}
 		}
 
 
@@ -150,6 +163,10 @@ namespace Mapbox.Unity
 			if (string.IsNullOrEmpty(ConfigurationJSON))
 			{
 				TextAsset configurationTextAsset = Resources.Load<TextAsset>(Constants.Path.MAPBOX_RESOURCES_RELATIVE);
+				if (null == configurationTextAsset)
+				{
+					throw new InvalidTokenException(_tokenNotSetErrorMessage);
+				}
 				ConfigurationJSON = configurationTextAsset.text;
 			}
 
@@ -174,6 +191,16 @@ namespace Mapbox.Unity
 
 		void ConfigureTelemetry()
 		{
+			// TODO: enable after token validation has been made async
+			//if (
+			//	null == _configuration
+			//	|| string.IsNullOrEmpty(_configuration.AccessToken)
+			//	|| !_tokenValid
+			//)
+			//{
+			//	Debug.LogError(_tokenNotSetErrorMessage);
+			//	return;
+			//}
 			try
 			{
 				_telemetryLibrary = TelemetryFactory.GetTelemetryInstance();
